@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import Navbar from "./Navbar";
 import Stickyfooter from "./Stickyfooter";
+import AuthNavbar from "./AuthNavbar";
 class Upcomingmeetups extends Component {
   constructor(props) {
     super(props);
@@ -73,7 +73,7 @@ class Upcomingmeetups extends Component {
     );
     return (
       <div>
-        <Navbar />
+        <AuthNavbar/>
         <br />
         <br />
         <br />

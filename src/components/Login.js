@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import Navbar from "./Navbar";
 import Stickyfooter from "./Stickyfooter";
+import setAuthToken from "../utils/setAuthToken";
 
 class Login extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Login extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    let Data = {
+    const Data = {
       email: this.state.email,
       password: this.state.password
     };
@@ -31,19 +32,27 @@ class Login extends Component {
       method: "post"
     })
       .then(res => {
-        window.localStorage.setItem("token", res.data.token);
+        // save token to local storage
+        const {token} = res.data;
+        // save token to  local storage
+        localStorage.setItem('jwtToken', token);
+        // set token to Auth header
+        setAuthToken(token);
+
         responseMessage = res.data.Message;
+        // display response message in the alterbox.
         document.getElementById("success").innerHTML += `
             <div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
              <strong>${responseMessage}</strong>
             </div>
             `;
-        this.setState({ redirect: True });
+        this.props.history.push('/upcommingmeetups');
       })
       .catch(error => {
         if (error.response.data["detail"]) {
           responseMessage = error.response.data["detail"];
+          // display the error message in the alter box
           document.getElementById("success").innerHTML += `
                 <div class="alert alert-dismissible alert-warning">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
