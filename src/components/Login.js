@@ -38,7 +38,6 @@ class Login extends Component {
         localStorage.setItem('jwtToken', token);
         // set token to Auth header
         setAuthToken(token);
-
         responseMessage = res.data.Message;
         // display response message in the alterbox.
         document.getElementById("success").innerHTML += `

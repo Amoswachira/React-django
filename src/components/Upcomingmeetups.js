@@ -16,7 +16,6 @@ class Upcomingmeetups extends Component {
       method: "get"
     })
       .then(res => {
-        console.log(res);
         this.setState({
           upcoming_meetups: res.data.results
         });
