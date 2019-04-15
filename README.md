@@ -4,7 +4,7 @@ consume Django apis in react
 
 #Heroku link
 
-[view the App on heroku]('https://reactdjango-api.herokuapp.com')
+[view the App on heroku] 'https://reactdjango-api.herokuapp.com'
 
 #Login credentials
 
